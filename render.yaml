@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: mock-wsdl-cliente
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
