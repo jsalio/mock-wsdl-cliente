@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ConsultaGeneralProducto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaGeneralProductoReq" type="tns:ConsultaGeneralProductoRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConsultaGeneralProductoRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RequestHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Producto" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RequestHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Canal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terminal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaHora" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaGeneralProductoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaGeneralProductoResult" type="tns:ConsultaGeneralProductoResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConsultaGeneralProductoResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Identificacion" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TipoIdentificacion" type="tns:TiposDocumento" />
+              <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FechaExpiracion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoProducto" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResponseHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Canal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terminal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaHora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TRN_ID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Resultado" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TiposDocumento">
+        <s:restriction base="s:string">
+          <s:enumeration value="Cedula" />
+          <s:enumeration value="Pasaporte" />
+          <s:enumeration value="RNC" />
+          <s:enumeration value="GrupoEconomico" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CuentaRelacionados">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:CuentaRelacionadosRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CuentaRelacionadosRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RequestHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TipoCuenta" type="tns:TiposCuentas" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="TiposCuentas">
+        <s:restriction base="s:string">
+          <s:enumeration value="Corriente" />
+          <s:enumeration value="Ahorro" />
+          <s:enumeration value="AhorraCambio" />
+          <s:enumeration value="ReservaHogar" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CuentaRelacionadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CuentaRelacionadosResult" type="tns:CuentaRelacionadosResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CuentaRelacionadosResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Relacionados" type="tns:ArrayOfRelacionadoCuenta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfRelacionadoCuenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RelacionadoCuenta" nillable="true" type="tns:RelacionadoCuenta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RelacionadoCuenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoRelacion" type="tns:TipoRelacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identificacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoIdentificacion" type="tns:TiposDocumento" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TipoRelacion">
+        <s:restriction base="s:string">
+          <s:enumeration value="Principal" />
+          <s:enumeration value="Y" />
+          <s:enumeration value="Y_O" />
+          <s:enumeration value="Especial" />
+          <s:enumeration value="Apoderado" />
+          <s:enumeration value="Autorizado" />
+          <s:enumeration value="O" />
+          <s:enumeration value="Menor" />
+          <s:enumeration value="SubTitular" />
+          <s:enumeration value="NoDisponible" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ListadoOficinas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:ListadoOficinasRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ListadoOficinasRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RequestHeader" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ListadoOficinasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListadoOficinasResult" type="tns:ListadoOficinasResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ListadoOficinasResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Oficinas" type="tns:ArrayOfOficina" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfOficina">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Oficina" nillable="true" type="tns:Oficina" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Oficina">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodigoOficina" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionOficina" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DireccionOficina" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidaIdentificacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidaIdentificacionReq" type="tns:ValidaIdentificacionRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ValidaIdentificacionRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RequestHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TipoDocumento" type="tns:TiposDocumento" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ValidaIdentificacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidaIdentificacionResult" type="tns:ValidaIdentificacionResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ValidaIdentificacionResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Nombres" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Apellidos" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nacionalidad" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sexo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EstadoCivil" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FechaNacimiento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Profesion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Swift" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Telefono1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Telefono2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoPersonaDescripcion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoPersona" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoPostal" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Actividad" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ciudad" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sector" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerificarTasas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:VerificarTasasRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VerificarTasasRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RequestHeader" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerificarTasasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificarTasasResult" type="tns:VerificarTasasResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VerificarTasasResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Tasas" type="tns:ArrayOfTasaMoneda" />
+              <s:element minOccurs="0" maxOccurs="1" name="Remesas" type="tns:ArrayOfTasaRemesa" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfTasaMoneda">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tasa" nillable="true" type="tns:TasaMoneda" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TasaMoneda">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MonedaOrigen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MonedaDestino" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tasa" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTasaRemesa">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Remesa" nillable="true" type="tns:TasaRemesa" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TasaRemesa">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Moneda" type="tns:TiposMonedas" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tasa" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TiposMonedas">
+        <s:restriction base="s:string">
+          <s:enumeration value="RD" />
+          <s:enumeration value="US" />
+          <s:enumeration value="EU" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ConsultaPuestoEmpleado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaPuestoEmpleadoReq" type="tns:ConsultaPuestoEmpleadoRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConsultaPuestoEmpleadoRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RequestHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdEmpresa" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OpcionTipoBusqueda" type="tns:OpcionTipoBusqueda" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="OpcionTipoBusqueda">
+        <s:restriction base="s:string">
+          <s:enumeration value="CodigoEmpleado" />
+          <s:enumeration value="CodigoCargo" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ConsultaPuestoEmpleadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaPuestoEmpleadoResult" type="tns:ConsultaPuestoEmpleadoResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConsultaPuestoEmpleadoResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Apellido" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdCargo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Puesto" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Ubicacion" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoOficina" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Oficina" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoSupervisor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreSupervisor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApellidoSupervisor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdCargoSupervisor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PuestoSupervisor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoEmpleado" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IdEmpresa" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Empresa" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultaGeneralProductoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaGeneralProducto" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaGeneralProductoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaGeneralProductoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CuentaRelacionadosSoapIn">
+    <wsdl:part name="parameters" element="tns:CuentaRelacionados" />
+  </wsdl:message>
+  <wsdl:message name="CuentaRelacionadosSoapOut">
+    <wsdl:part name="parameters" element="tns:CuentaRelacionadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListadoOficinasSoapIn">
+    <wsdl:part name="parameters" element="tns:ListadoOficinas" />
+  </wsdl:message>
+  <wsdl:message name="ListadoOficinasSoapOut">
+    <wsdl:part name="parameters" element="tns:ListadoOficinasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaIdentificacionSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaIdentificacion" />
+  </wsdl:message>
+  <wsdl:message name="ValidaIdentificacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaIdentificacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificarTasasSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificarTasas" />
+  </wsdl:message>
+  <wsdl:message name="VerificarTasasSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificarTasasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaPuestoEmpleadoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaPuestoEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaPuestoEmpleadoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaPuestoEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BackEndServiceSoap">
+    <wsdl:operation name="ConsultaGeneralProducto">
+      <wsdl:input message="tns:ConsultaGeneralProductoSoapIn" />
+      <wsdl:output message="tns:ConsultaGeneralProductoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CuentaRelacionados">
+      <wsdl:input message="tns:CuentaRelacionadosSoapIn" />
+      <wsdl:output message="tns:CuentaRelacionadosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListadoOficinas">
+      <wsdl:input message="tns:ListadoOficinasSoapIn" />
+      <wsdl:output message="tns:ListadoOficinasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaIdentificacion">
+      <wsdl:input message="tns:ValidaIdentificacionSoapIn" />
+      <wsdl:output message="tns:ValidaIdentificacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarTasas">
+      <wsdl:input message="tns:VerificarTasasSoapIn" />
+      <wsdl:output message="tns:VerificarTasasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaPuestoEmpleado">
+      <wsdl:input message="tns:ConsultaPuestoEmpleadoSoapIn" />
+      <wsdl:output message="tns:ConsultaPuestoEmpleadoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BackEndServiceSoap" type="tns:BackEndServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaGeneralProducto">
+      <soap:operation soapAction="http://tempuri.org/ConsultaGeneralProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CuentaRelacionados">
+      <soap:operation soapAction="http://tempuri.org/CuentaRelacionados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListadoOficinas">
+      <soap:operation soapAction="http://tempuri.org/ListadoOficinas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaIdentificacion">
+      <soap:operation soapAction="http://tempuri.org/ValidaIdentificacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarTasas">
+      <soap:operation soapAction="http://tempuri.org/VerificarTasas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaPuestoEmpleado">
+      <soap:operation soapAction="http://tempuri.org/ConsultaPuestoEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BackEndService">
+    <wsdl:port name="BackEndServiceSoap" binding="tns:BackEndServiceSoap">
+      <soap:address location="http://172.22.42.111/Fiserv/Contracts1.0/Novosign/BackEndService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
